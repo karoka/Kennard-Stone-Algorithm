@@ -2,7 +2,12 @@ import numpy as np
 from dist import *
 
 def loadKS(input):
-    X = np.loadtxt(input, delimiter="\t")
+    try:
+        X = np.loadtxt(input, delimiter="\t")
+    except:
+        import pandas as pd
+        X = pd.read_table(input, delim_whitespace=True, header=None)
+        return X.values
     return X
 
 def kenStone(X, k, precomputed=False):
@@ -43,10 +48,18 @@ def writeKS(output, X, precomputed=False):
         np.savetxt(output, X, fmt='%.5f')
 
 def test():
+    # take features
+    input = 'test/distArray.txt'
+    X = loadKS(input)
+    Y = kenStone(X, 10)
+    writeKS('test/KSfeatures.txt', Y)
+
+    # precomputed
     input = 'test/matrix.txt'
     X = loadKS(input)
     Y = kenStone(X, 10, precomputed=True)
     writeKS('test/KSelected.txt', Y, precomputed=True)
+
 
 if __name__ == "__main__":
     test()

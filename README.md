@@ -3,6 +3,7 @@
 ### Description
 * Input: dataset with each row representing a sample; or (if precomputed=True) pairwise-distance matrix.
 * Output: dataset containing selected samples; or (if precomputed=True) the index of selected samples.
+* Dependency: numpy, scipy, pandas (required for precomputed=False), scikit-learn (optional) 
 
 ### Algorithm
 The text below was taken from: http://wiki.eigenvector.com/index.php?title=Kennardstone
