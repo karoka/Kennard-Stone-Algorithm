@@ -25,6 +25,8 @@ def kenStone(X, k, precomputed=False):
                 mindistj = min([dist[j][i] for i in selected])
                 if mindistj > mindist:
                     minj = j
+                    mindist = mindistj
+        print(selected, minj, [dist[minj][i] for i in selected])
         selected.add(minj)
         k -= 1
     print("selected samples indices: ", selected)
