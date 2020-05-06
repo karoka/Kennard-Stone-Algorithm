@@ -34,8 +34,8 @@ def kenStone(X, k, precomputed=False, verbose=False):
                     mindist = mindistj
         if verbose:
             print(selected, minj, [dist[minj][i] for i in selected])
-            selected.add(minj)
-            k -= 1
+        selected.add(minj)
+        k -= 1
     if verbose:
         print("selected samples indices: ", selected)
     # return selected samples
