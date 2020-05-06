@@ -10,9 +10,10 @@ def loadKS(input):
         return X.values
     return X
 
-def kenStone(X, k, precomputed=False):
+def kenStone(X, k, precomputed=False, verbose=False):
     n = len(X) # number of samples
-    print("Input Size:", n, "Desired Size:", k)
+    if verbose:
+        print("Input Size:", n, "Desired Size:", k)
     assert n >= 2 and n >= k and k >= 2, "Error: number of rows must >= 2, k must >= 2 and k must > number of rows"
     # pair-wise distance matrix
     dist = skdist(X, precomputed)
@@ -31,10 +32,12 @@ def kenStone(X, k, precomputed=False):
                 if mindistj > mindist:
                     minj = j
                     mindist = mindistj
-        print(selected, minj, [dist[minj][i] for i in selected])
-        selected.add(minj)
-        k -= 1
-    print("selected samples indices: ", selected)
+        if verbose:
+            print(selected, minj, [dist[minj][i] for i in selected])
+            selected.add(minj)
+            k -= 1
+    if verbose:
+        print("selected samples indices: ", selected)
     # return selected samples
     if precomputed:
         return list(selected)
